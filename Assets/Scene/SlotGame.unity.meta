@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scene/Slot.unity.meta
+guid: 874e02df24c615f41b0940a134274ada
+timeCreated: 1472263066
+=======
 guid: a8b950bed4aa79e40965e39cd8fc6d97
 timeCreated: 1472280868
+>>>>>>> f53a4991ca0d68444c257c0e0fb1c2c108c46928:Assets/Scene/SlotGame.unity.meta
 licenseType: Free
 DefaultImporter:
   userData: 
