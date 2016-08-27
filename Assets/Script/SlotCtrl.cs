@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class SlotCtrl : MonoBehaviour
 {
-    public GameObject[] reelSlot;   //リールの大本を取得
-    public GameObject[] panel;      //RayCast用のパネル取得
+    public GameObject[] rootReel;   //リールの大本を取得
     public ButtonCtrl buttonCtrl;   //ボタン操作script
+    public ReelJudge reelJudge;
 
 
     void Start()
@@ -21,10 +21,11 @@ public class SlotCtrl : MonoBehaviour
         {
             return;
         }
-        //Left, Center, Rightを全て押したら、全てのボタンをfalseにする
+        //Left, Center, Rightを全て押したら
         else if(buttonCtrl.IsAllButtonOn())
         {
-            buttonCtrl.AllButtonFalse();
+            reelJudge.Judge(); //当たり目判定
+            buttonCtrl.AllButtonFalse(); //全てのボタンをfalseにする
         }
         
         ReelSlot();
@@ -35,7 +36,7 @@ public class SlotCtrl : MonoBehaviour
     void ReelSlot()
     {
         //reelSlotの数だけ回す
-        for (int i = 0; i < reelSlot.Length; i++)
+        for (int i = 0; i < rootReel.Length; i++)
         {
             //ボタンを押したリールを止める
             if (i == 0 && buttonCtrl.isLeftButton)
@@ -55,21 +56,21 @@ public class SlotCtrl : MonoBehaviour
             float reelSpeed = 0f; 
             if (i == 0)
             {
-                reelSpeed = 400f;
+                reelSpeed = 6f;
             }
             else if (i == 1)
             {
-                reelSpeed = 800f;
+                reelSpeed = 18f;
             }
             else if (i == 2)
             {
-                reelSpeed = 1200f;
+                reelSpeed = 54f;
             }
 
             //reelSlotが持つ子オブジェクトの数だけ回す
             for (int j = 0; j < 10; j++)
             {
-                GameObject child = reelSlot[i].transform.FindChild("Image" + j).gameObject; //子オブジェクト取得
+                GameObject child = rootReel[i].transform.FindChild("Image" + j).gameObject; //子オブジェクト取得
                 Vector2 childPos = child.transform.position; //位置情報を取り出す
                 childPos.y -= Time.deltaTime * reelSpeed; //下に移動するように座標をいじる
                 child.transform.position = childPos; //弄った座標を適用
@@ -79,18 +80,18 @@ public class SlotCtrl : MonoBehaviour
 
     void UnlimitedReel()
     {
-        for (int i = 0; i < reelSlot.Length; i++)
+        for (int i = 0; i < rootReel.Length; i++)
         {
-            GameObject originChild = reelSlot[i].transform.FindChild("originImage").gameObject; //インスタンスの元となる場所
+            GameObject originChild = rootReel[i].transform.FindChild("originImage").gameObject; //インスタンスの元となる場所
 
             for (int j = 9; j >= 0; j--)
             {
-                GameObject child = reelSlot[i].transform.FindChild("Image" + j).gameObject; //子オブジェクト取得
-                if (child.transform.position.y <= -200f)
+                GameObject child = rootReel[i].transform.FindChild("Image" + j).gameObject; //子オブジェクト取得
+                if (child.transform.position.y <= -10f)
                 {
                     GameObject clone = Instantiate(child, originChild.transform.position, Quaternion.identity) as GameObject; //インスタンス生成
                     //clone.transform.parent = reelSlot[i].transform;
-                    clone.transform.SetParent(reelSlot[i].transform); //親子を関連付ける
+                    clone.transform.SetParent(rootReel[i].transform); //親子を関連付ける
                     clone.name = child.name; //名前を消えるものと同じにする
                     Destroy(child); //用済みなので消す
 
@@ -98,13 +99,13 @@ public class SlotCtrl : MonoBehaviour
                     Vector2 offset;
                     if (j == 9)
                     {
-                        offset = reelSlot[i].transform.FindChild("Image" + 0).gameObject.transform.position;
+                        offset = rootReel[i].transform.FindChild("Image" + 0).gameObject.transform.position;
                     }
                     else
                     {
-                        offset = reelSlot[i].transform.FindChild("Image" + (j + 1)).gameObject.transform.position;
+                        offset = rootReel[i].transform.FindChild("Image" + (j + 1)).gameObject.transform.position;
                     }
-                    offset.y += 100;
+                    offset.y += 2.2f;
                     clone.transform.position = offset;
                 }
             }
