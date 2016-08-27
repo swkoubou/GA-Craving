@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ButtonCtrl : MonoBehaviour
 {
@@ -36,6 +37,11 @@ public class ButtonCtrl : MonoBehaviour
         {
             isStartButton = true;
         }
+    }
+
+    public void OnReturnButton()
+    {
+        SceneManager.LoadScene("title");
     }
 
     public void OnLeftButton()
