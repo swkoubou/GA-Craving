@@ -9,6 +9,9 @@ public class SlotDesign : MonoBehaviour
     public int money;
     public Image[] Whiterod;
     private float waitTime;
+    public AudioSource SEBox;
+    public AudioClip lever;
+    public AudioClip pushButton;
 
     void Start()
     {
