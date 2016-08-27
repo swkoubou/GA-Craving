@@ -3,7 +3,12 @@ using System.Collections;
 
 public class paa : MonoBehaviour
 {
-    public int count = -1;
+    public int count;
+
+    void Start()
+    {
+        count = -1;
+    }
 
     public void OnClick()
     {

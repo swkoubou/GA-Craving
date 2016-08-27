@@ -16,7 +16,7 @@ public class RSP : MonoBehaviour
     public paa paa;
     public void Start()
     {
-        paa.count = 3;
+        //paa.count = 3;
     }
 
 
