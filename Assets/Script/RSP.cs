@@ -9,19 +9,14 @@ public class RSP : MonoBehaviour
     public Sprite win;                                     //勝ち
     public Sprite lose;                                    //負け
     public Sprite aiko;                                    //あいこ
-  //  public GameObject originHand;
     public GameObject myhand;//画面上に出る自分の手
     public GameObject enemyhand;//画面上に出る相手の手
     public GameObject result;//画面上に出る結果
     private GameObject appearHand;    //画面上に出ている手
-    private bool isHiddenOn = false;
-
-
-    void Start()
+    public paa paa;
+    public void Start()
     {
-        //enemyhand = Instantiate(originHand, originHand.transform.position, Quaternion.identity) as GameObject; //インスタンス生成
-       // enemyhand.GetComponent<SpriteRenderer>().sprite = GetNextHand(); //手の絵を入れる
-      //  originHand.GetComponent<Renderer>().enabled = false; //見えなくする
+        paa.count = 3;
     }
 
 
@@ -56,7 +51,7 @@ public class RSP : MonoBehaviour
     {
         string enemyHand;//= enemyhand.GetComponent<SpriteRenderer>().sprite.name; //現在の手の名前を取得
          //グー
-        if (Input.GetKeyDown(KeyCode.A))
+        if (paa.count==2)
         {
             MoveHand();
             enemyHand = enemyhand.GetComponent<SpriteRenderer>().sprite.name;
@@ -75,7 +70,7 @@ public class RSP : MonoBehaviour
             myhand.GetComponent<SpriteRenderer>().sprite = rock;
         }
         //チョキ.
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (paa.count==0)
         {
             MoveHand();
             enemyHand = enemyhand.GetComponent<SpriteRenderer>().sprite.name;
@@ -94,7 +89,7 @@ public class RSP : MonoBehaviour
             myhand.GetComponent<SpriteRenderer>().sprite = scissors;
         }
         //パー.
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (paa.count==1)
         {
             MoveHand();
             enemyHand = enemyhand.GetComponent<SpriteRenderer>().sprite.name;
@@ -112,6 +107,7 @@ public class RSP : MonoBehaviour
             }
             myhand.GetComponent<SpriteRenderer>().sprite = paper;
         }
+        paa.count = -1;
     }
     //結果表示
     void Win()
