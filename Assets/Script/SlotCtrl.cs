@@ -4,16 +4,29 @@ using UnityEngine.UI;
 
 public class SlotCtrl : MonoBehaviour
 {
-    public GameObject[] reelSlot = new GameObject[3]; //リールの大本を取得
+    public GameObject[] reelSlot;   //リールの大本を取得
+    public GameObject[] panel;      //RayCast用のパネル取得
+    public ButtonCtrl buttonCtrl;   //ボタン操作script
 
 
     void Start()
     {
-
+        
     }
 
     void Update()
     {
+        //スタートボタンを押していないなら何もしない
+        if (!buttonCtrl.isStartButton)
+        {
+            return;
+        }
+        //Left, Center, Rightを全て押したら、全てのボタンをfalseにする
+        else if(buttonCtrl.IsAllButtonOn())
+        {
+            buttonCtrl.AllButtonFalse();
+        }
+        
         ReelSlot();
         UnlimitedReel();
     }
@@ -24,7 +37,22 @@ public class SlotCtrl : MonoBehaviour
         //reelSlotの数だけ回す
         for (int i = 0; i < reelSlot.Length; i++)
         {
-            float reelSpeed = 0f; //リールを回すスピード
+            //ボタンを押したリールを止める
+            if (i == 0 && buttonCtrl.isLeftButton)
+            {
+                continue;
+            }
+            else if (i == 1 && buttonCtrl.isCenterButton)
+            {
+                continue;
+            }
+            else if (i == 2 && buttonCtrl.isRightButton)
+            {
+                continue;
+            }
+
+            //リールを回すスピード
+            float reelSpeed = 0f; 
             if (i == 0)
             {
                 reelSpeed = 400f;
@@ -82,15 +110,4 @@ public class SlotCtrl : MonoBehaviour
             }
         }
     }
-
-    //public void UnlimitedReel2(GameObject col)
-    //{
-    //    GameObject parent = col.transform.parent.gameObject;
-    //    GameObject originImage = parent.transform.FindChild("originImage").gameObject;
-    //    GameObject clone = Instantiate(col, originImage.transform.position, Quaternion.identity) as GameObject; //インスタンス生成
-    //    clone.transform.SetParent(parent.transform); //親子を関連付ける
-    //    clone.name = col.name; //名前を消えるものと同じにする
-    //    clone.GetComponent<BoxCollider2D>().enabled = true; //Colliderをオンにする
-    //    Destroy(col); //用済みなので消す
-    //}
 }
