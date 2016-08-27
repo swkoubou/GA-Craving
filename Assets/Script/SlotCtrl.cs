@@ -64,7 +64,6 @@ public class SlotCtrl : MonoBehaviour
                     //clone.transform.parent = reelSlot[i].transform;
                     clone.transform.SetParent(reelSlot[i].transform); //親子を関連付ける
                     clone.name = child.name; //名前を消えるものと同じにする
-                    clone.GetComponent<BoxCollider2D>().enabled = true; //Colliderをオンにする
                     Destroy(child); //用済みなので消す
 
                     //等間隔に配置されるよう、1つ下のリールの位置情報を取得して、y軸を弄る
@@ -84,17 +83,14 @@ public class SlotCtrl : MonoBehaviour
         }
     }
 
-    public void UnlimitedReel2(GameObject col)
-    {
-        GameObject parent = col.transform.parent.gameObject;
-        GameObject originImage = parent.transform.FindChild("originImage").gameObject;
-        GameObject clone = Instantiate(col, originImage.transform.position, Quaternion.identity) as GameObject; //インスタンス生成
-        clone.transform.SetParent(parent.transform); //親子を関連付ける
-        clone.name = col.name; //名前を消えるものと同じにする
-        clone.GetComponent<BoxCollider2D>().enabled = true; //Colliderをオンにする
-        Destroy(col); //用済みなので消す
-
-        //string beforeReel = col.name.Substring(3, 4);
-        //Debug.Log(beforeReel);
-    }
+    //public void UnlimitedReel2(GameObject col)
+    //{
+    //    GameObject parent = col.transform.parent.gameObject;
+    //    GameObject originImage = parent.transform.FindChild("originImage").gameObject;
+    //    GameObject clone = Instantiate(col, originImage.transform.position, Quaternion.identity) as GameObject; //インスタンス生成
+    //    clone.transform.SetParent(parent.transform); //親子を関連付ける
+    //    clone.name = col.name; //名前を消えるものと同じにする
+    //    clone.GetComponent<BoxCollider2D>().enabled = true; //Colliderをオンにする
+    //    Destroy(col); //用済みなので消す
+    //}
 }
