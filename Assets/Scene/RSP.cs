@@ -6,8 +6,11 @@ public class RSP : MonoBehaviour
     public Sprite rock;                                     //グー
     public Sprite scissors;                                 //チョキ
     public Sprite paper;                                    //パー
+    public Sprite win;
+    public Sprite lose;
     public GameObject myhand;//インスタンスの元となるオブジェクト
     public GameObject enemyhand;
+    public GameObject result;
     private GameObject appearHand;    //画面上に出ている手
     private bool isHiddenOn = false;
 
@@ -104,5 +107,18 @@ public class RSP : MonoBehaviour
             }
             return hand;
      }
-    
+    void Win()
+    {
+        result.GetComponent<SpriteRenderer>().sprite = win;
+    }
+
+    void Drow()
+    {
+
+    }
+
+    void Lose()
+    {
+        result.GetComponent<SpriteRenderer>().sprite = lose;
+    }
 }
