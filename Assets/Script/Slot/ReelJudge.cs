@@ -31,6 +31,7 @@ public class ReelJudge : MonoBehaviour {
         {
             top = true;
             Probe(panelName[0]);
+            slotDesign.Bliliant(0);
         }
 
         bool horizontal = false;
@@ -38,6 +39,7 @@ public class ReelJudge : MonoBehaviour {
         {
             horizontal = true;
             Probe(panelName[3]);
+            slotDesign.Bliliant(1);
         }
 
         bool bottom = false;
@@ -45,27 +47,7 @@ public class ReelJudge : MonoBehaviour {
         {
             bottom = true;
             Probe(panelName[6]);
-        }
-
-        bool left = false;
-        if (panelName[0] == panelName[3] && panelName[3] == panelName[5])
-        {
-            left = true;
-            Probe(panelName[0]);
-        }
-
-        bool virtical = false;
-        if (panelName[1] == panelName[4] && panelName[4] == panelName[7])
-        {
-            virtical = true;
-            Probe(panelName[1]);
-        }
-
-        bool right = false;
-        if (panelName[2] == panelName[5] && panelName[5] == panelName[8])
-        {
-            right = true;
-            Probe(panelName[2]);
+            slotDesign.Bliliant(2);
         }
 
         bool slantLeft = false;
@@ -73,6 +55,7 @@ public class ReelJudge : MonoBehaviour {
         {
             slantLeft = true;
             Probe(panelName[0]);
+            slotDesign.Bliliant(3);
         }
 
         bool slanRight = false;
@@ -80,6 +63,7 @@ public class ReelJudge : MonoBehaviour {
         {
             slanRight = true;
             Probe(panelName[2]);
+            slotDesign.Bliliant(4);
         }
     }
 
