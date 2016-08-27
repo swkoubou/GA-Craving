@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ButtonCtrl : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class ButtonCtrl : MonoBehaviour
     public bool isLeftButton;
     public bool isCenterButton;
     public bool isRightButton;
+    public AudioSource SEBox;
+    public AudioClip lever;
+    public AudioClip pushButton;
 
 
     void Start()
@@ -35,7 +39,13 @@ public class ButtonCtrl : MonoBehaviour
         if (!isStartButton)
         {
             isStartButton = true;
+            SEBox.PlayOneShot(lever, 3f);
         }
+    }
+
+    public void OnReturnButton()
+    {
+        SceneManager.LoadScene("title");
     }
 
     public void OnLeftButton()
@@ -43,6 +53,7 @@ public class ButtonCtrl : MonoBehaviour
         if (isStartButton)
         {
             isLeftButton = true;
+            SEBox.PlayOneShot(pushButton, 3f);
         }
     }
 
@@ -51,6 +62,7 @@ public class ButtonCtrl : MonoBehaviour
         if (isStartButton)
         {
             isCenterButton = true;
+            SEBox.PlayOneShot(pushButton, 3f);
         }
     }
 
@@ -59,6 +71,7 @@ public class ButtonCtrl : MonoBehaviour
         if (isStartButton)
         {
             isRightButton = true;
+            SEBox.PlayOneShot(pushButton, 3f);
         }
     }
 

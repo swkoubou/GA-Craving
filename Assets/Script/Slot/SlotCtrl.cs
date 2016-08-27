@@ -60,11 +60,11 @@ public class SlotCtrl : MonoBehaviour
             }
             else if (i == 1)
             {
-                reelSpeed = 18f;
+                reelSpeed = 12f;
             }
             else if (i == 2)
             {
-                reelSpeed = 54f;
+                reelSpeed = 36f;
             }
 
             //reelSlotが持つ子オブジェクトの数だけ回す
