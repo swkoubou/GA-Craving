@@ -15,7 +15,7 @@ public class RSP : MonoBehaviour
     private GameObject appearHand;    //画面上に出ている手
     public paa paa;
     public TransDress transDress;
-
+    public AudioSource SEBox;
 
     public void Start()
     {
@@ -52,12 +52,18 @@ public class RSP : MonoBehaviour
     //自分の出す手を選ぶ
     void Update()
     {
-        if(result.GetComponent<SpriteRenderer>().sprite != null)
-        {
-            if(Input.GetMouseButtonDown(0)){
-                result.GetComponent<SpriteRenderer>().sprite = null;
+        //if(result.GetComponent<SpriteRenderer>().sprite != null)
+        //{
+        //    if(Input.GetMouseButtonDown(0)){
+        //        result.GetComponent<SpriteRenderer>().sprite = null;
 
-            }
+        //    }
+        //}
+        if(paa.waitTime <= 0)
+        {
+            result.GetComponent<SpriteRenderer>().sprite = null;
+            enemyhand.GetComponent<SpriteRenderer>().sprite = null;
+            myhand.GetComponent<SpriteRenderer>().sprite = null;
         }
 
         string enemyHand;//= enemyhand.GetComponent<SpriteRenderer>().sprite.name; //現在の手の名前を取得
@@ -125,6 +131,8 @@ public class RSP : MonoBehaviour
     {
         result.GetComponent<SpriteRenderer>().sprite = win;
         transDress.DressBreak();
+        int rand = Random.Range(0, 20);
+        SEBox.PlayOneShot((AudioClip)Resources.Load(rand.ToString()), 1.5f);
     }
 
     void Drow()
