@@ -20,14 +20,25 @@ public class TransDress : MonoBehaviour
 
     public void DressBreak()
     {
-        if (dress[count].name == "ハート")
+        if (dress[0].transform.root.name == "mywife")
         {
-            dress[count].GetComponent<SpriteRenderer>().enabled = true;
-            count++;
+            if (dress[count].name == "ハート")
+            {
+                dress[count].GetComponent<SpriteRenderer>().enabled = true;
+                count++;
+            }
+            else if (dress[count].name == "全裸")
+            {
+                dress[count + 1].GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
-        else if (dress[count].name == "全裸")
+        else if (dress[0].transform.root.name == "Girl1")
         {
-            dress[count + 1].GetComponent<SpriteRenderer>().enabled = true;
+            if (dress[count].name == "girl1_body_oko")
+            {
+                dress[count].GetComponent<SpriteRenderer>().enabled = true;
+                count++;
+            }
         }
 
 
@@ -40,7 +51,7 @@ public class TransDress : MonoBehaviour
 
     void Transparent(GameObject obj)
     {
-        iTween.FadeTo(obj, iTween.Hash("alpha", 0f, "time", 2f));
+        iTween.FadeTo(obj, iTween.Hash("alpha", 0f, "time", 1.5f));
 
     }
 
