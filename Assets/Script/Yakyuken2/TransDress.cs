@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TransDress : MonoBehaviour
 {
@@ -41,5 +42,10 @@ public class TransDress : MonoBehaviour
     {
         iTween.FadeTo(obj, iTween.Hash("alpha", 0f, "time", 2f));
 
+    }
+
+    public void OnReturnButton()
+    {
+        SceneManager.LoadScene("title");
     }
 }
