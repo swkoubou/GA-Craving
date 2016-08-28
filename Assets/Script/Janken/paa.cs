@@ -7,6 +7,9 @@ public class paa : MonoBehaviour
     public int count;
     public Text moneyText;
     public float waitTime;
+    public Image rock;
+    public Image scissors;
+    public Image paper;
 
     void Start()
     {
@@ -30,7 +33,8 @@ public class paa : MonoBehaviour
         }
     }
 
-    public void OnPaper(){
+    public void OnPaper()
+    {
         if (waitTime <= 0)
         {
             waitTime = 2f;
@@ -46,6 +50,22 @@ public class paa : MonoBehaviour
             waitTime = 2f;
             count = 2;
             SlotDesign.money -= 1000;
+        }
+    }
+
+    public void OnEnabled()
+    {
+        if (rock.GetComponent<Image>().enabled)
+        {
+            rock.GetComponent<Image>().enabled = false;
+            scissors.GetComponent<Image>().enabled = false;
+            paper.GetComponent<Image>().enabled = false;
+        }
+        else
+        {
+            rock.GetComponent<Image>().enabled = true;
+            scissors.GetComponent<Image>().enabled = true;
+            paper.GetComponent<Image>().enabled = true;
         }
     }
 }

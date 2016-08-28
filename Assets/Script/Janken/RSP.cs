@@ -66,6 +66,8 @@ public class RSP : MonoBehaviour
             myhand.GetComponent<SpriteRenderer>().sprite = null;
         }
 
+        
+
         string enemyHand;//= enemyhand.GetComponent<SpriteRenderer>().sprite.name; //現在の手の名前を取得
          //グー
         if (paa.count==2)
