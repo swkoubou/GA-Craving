@@ -9,6 +9,7 @@ public class SlotDesign : MonoBehaviour
     public int money;
     public Image[] Whiterod;
     private float waitTime;
+    
 
     void Start()
     {
