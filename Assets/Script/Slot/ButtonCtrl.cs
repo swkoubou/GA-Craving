@@ -11,6 +11,7 @@ public class ButtonCtrl : MonoBehaviour
     public AudioSource SEBox;
     public AudioClip lever;
     public AudioClip pushButton;
+    public AudioClip hit;
 
 
     void Start()

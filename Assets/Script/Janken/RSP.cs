@@ -14,6 +14,9 @@ public class RSP : MonoBehaviour
     public GameObject result;//画面上に出る結果
     private GameObject appearHand;    //画面上に出ている手
     public paa paa;
+    public TransDress transDress;
+
+
     public void Start()
     {
         //paa.count = 3;
@@ -49,6 +52,14 @@ public class RSP : MonoBehaviour
     //自分の出す手を選ぶ
     void Update()
     {
+        if(result.GetComponent<SpriteRenderer>().sprite != null)
+        {
+            if(Input.GetMouseButtonDown(0)){
+                result.GetComponent<SpriteRenderer>().sprite = null;
+
+            }
+        }
+
         string enemyHand;//= enemyhand.GetComponent<SpriteRenderer>().sprite.name; //現在の手の名前を取得
          //グー
         if (paa.count==2)
@@ -113,6 +124,7 @@ public class RSP : MonoBehaviour
     void Win()
     {
         result.GetComponent<SpriteRenderer>().sprite = win;
+        transDress.DressBreak();
     }
 
     void Drow()

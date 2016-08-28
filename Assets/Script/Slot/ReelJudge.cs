@@ -22,46 +22,47 @@ public class ReelJudge : MonoBehaviour {
         for (int i = 0; i < reel.Length; i++)
         {
             Ray ray = Camera.main.ScreenPointToRay(reel[i].transform.position);
-            RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin, ray.direction);
             panelName[i] = hit.collider.tag;
+            //hit.transform.position = reel[i].transform.position;
         }
 
-        bool top = false;
+        //bool top = false;
         if(panelName[0] == panelName[1] && panelName[1] ==  panelName[2])
         {
-            top = true;
+            //top = true;
             Probe(panelName[0]);
             slotDesign.Bliliant(0);
         }
 
-        bool horizontal = false;
+        //bool horizontal = false;
         if (panelName[3] == panelName[4] && panelName[4] == panelName[5])
         {
-            horizontal = true;
+            //horizontal = true;
             Probe(panelName[3]);
             slotDesign.Bliliant(1);
         }
 
-        bool bottom = false;
+        //bool bottom = false;
         if (panelName[6] == panelName[7] && panelName[7] == panelName[8])
         {
-            bottom = true;
+            //bottom = true;
             Probe(panelName[6]);
             slotDesign.Bliliant(2);
         }
 
-        bool slantLeft = false;
+        //bool slantLeft = false;
         if (panelName[0] == panelName[4] && panelName[4] == panelName[8])
         {
-            slantLeft = true;
+            //slantLeft = true;
             Probe(panelName[0]);
             slotDesign.Bliliant(3);
         }
 
-        bool slanRight = false;
+        //bool slanRight = false;
         if (panelName[2] == panelName[4] && panelName[4] == panelName[6])
         {
-            slanRight = true;
+            //slanRight = true;
             Probe(panelName[2]);
             slotDesign.Bliliant(4);
         }
@@ -71,27 +72,27 @@ public class ReelJudge : MonoBehaviour {
     {
         if(tagName == "replay")
         {
-            slotDesign.money += 100;
+            SlotDesign.money += 100;
         }
         else if(tagName == "bel")
         {
-            slotDesign.money += 200;
+            SlotDesign.money += 200;
         }
         else if (tagName == "chery")
         {
-            slotDesign.money += 500;
+            SlotDesign.money += 500;
         }
         else if (tagName == "watermelon")
         {
-            slotDesign.money += 1000;
+            SlotDesign.money += 1000;
         }
         else if (tagName == "seven")
         {
-            slotDesign.money += 10000;
+            SlotDesign.money += 10000;
         }
         else
         {
-            slotDesign.money += 0;
+            SlotDesign.money += 0;
         }
     }
 }

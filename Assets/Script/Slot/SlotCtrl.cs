@@ -6,7 +6,8 @@ public class SlotCtrl : MonoBehaviour
 {
     public GameObject[] rootReel;   //リールの大本を取得
     public ButtonCtrl buttonCtrl;   //ボタン操作script
-    public ReelJudge reelJudge;
+    public ReelJudge reelJudge;     //リールの当たり判定script
+    private float offset = 2.2f;    //リールががたがたにならないように等間隔に配置するため
 
 
     void Start()
@@ -96,17 +97,17 @@ public class SlotCtrl : MonoBehaviour
                     Destroy(child); //用済みなので消す
 
                     //等間隔に配置されるよう、1つ下のリールの位置情報を取得して、y軸を弄る
-                    Vector2 offset;
+                    Vector2 complement;
                     if (j == 9)
                     {
-                        offset = rootReel[i].transform.FindChild("Image" + 0).gameObject.transform.position;
+                        complement = rootReel[i].transform.FindChild("Image" + 0).gameObject.transform.position;
                     }
                     else
                     {
-                        offset = rootReel[i].transform.FindChild("Image" + (j + 1)).gameObject.transform.position;
+                        complement = rootReel[i].transform.FindChild("Image" + (j + 1)).gameObject.transform.position;
                     }
-                    offset.y += 2.2f;
-                    clone.transform.position = offset;
+                    complement.y += offset;
+                    clone.transform.position = complement;
                 }
             }
         }

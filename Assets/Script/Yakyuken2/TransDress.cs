@@ -15,24 +15,25 @@ public class TransDress : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (dress[count].name == "ハート")
-            {
-                dress[count].GetComponent<SpriteRenderer>().enabled = true;
-                count++;
-            }
-            else if (dress[count].name == "全裸")
-            {
-                dress[count + 1].GetComponent<SpriteRenderer>().enabled = true;
-            }
+    }
 
-            
-            if (count < dress.Length - 1)
-            {
-                Transparent(dress[count]);
-                count++;
-            }
+    public void DressBreak()
+    {
+        if (dress[count].name == "ハート")
+        {
+            dress[count].GetComponent<SpriteRenderer>().enabled = true;
+            count++;
+        }
+        else if (dress[count].name == "全裸")
+        {
+            dress[count + 1].GetComponent<SpriteRenderer>().enabled = true;
+        }
+
+
+        if (count < dress.Length - 1)
+        {
+            Transparent(dress[count]);
+            count++;
         }
     }
 
