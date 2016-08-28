@@ -6,7 +6,7 @@ public class SlotDesign : MonoBehaviour
 {
     public ButtonCtrl buttonCtrl;
     public Text moneyText;
-    public int money;
+    static public int money = 0;
     public Image[] Whiterod;
     private float waitTime;
     
@@ -41,5 +41,6 @@ public class SlotDesign : MonoBehaviour
     {
         Whiterod[array].GetComponent<Image>().color = new Color(255, 255, 0, 255);
         //iTween.FadeTo(Whiterod[array].gameObject, iTween.Hash("red", 255f, "green", 255f, "blue", 0f));
+        buttonCtrl.SEBox.PlayOneShot(buttonCtrl.hit, 3f);
     }
 }
