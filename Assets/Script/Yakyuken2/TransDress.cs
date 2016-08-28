@@ -6,16 +6,28 @@ public class TransDress : MonoBehaviour
 {
     public GameObject[] dress;
     int count;
+    public SpriteRenderer congratulation;
+    private float waitTime = 5f;
 
     void Start()
     {
         count = 0;
+        congratulation.enabled = false;
+        Debug.Log(dress.Length);
     }
 
 
     void Update()
     {
-
+        if (congratulation.enabled)
+        {
+            waitTime -= Time.deltaTime;
+            if(waitTime <= 0)
+            {
+                SceneManager.LoadScene("title");
+            }
+            return;
+        }
     }
 
     public void DressBreak()
@@ -39,13 +51,21 @@ public class TransDress : MonoBehaviour
                 dress[count].GetComponent<SpriteRenderer>().enabled = true;
                 count++;
             }
+            else if(dress[count].name == "gitl_leg")
+            {
+                count++;
+            }
         }
 
 
-        if (count < dress.Length - 1)
+        if (count < dress.Length - 2)
         {
             Transparent(dress[count]);
             count++;
+        }
+        else
+        {
+            congratulation.enabled = true;
         }
     }
 
