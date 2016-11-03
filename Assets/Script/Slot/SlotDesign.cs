@@ -13,7 +13,6 @@ public class SlotDesign : MonoBehaviour
 
     void Start()
     {
-        money = 0;
         waitTime = 2f;
     }
 
