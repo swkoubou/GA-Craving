@@ -7,7 +7,7 @@ public class Restart : MonoBehaviour {
     private float waitTime = 10f;
 	
 	void Start () {
-	
+        SlotDesign.money = 0;
 	}
 	
 	
